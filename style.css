@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+:root {
+  --darker: #561C24;
+  --dark: #6D2932;
+  --mid: #cfbba1;
+  --light: #dccab4;
+  --lighter: #E8D8C4;
+  --red: #944E63;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  width: 12px;
+  border-radius: 100px;
+  background-color: var(--light);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background-color: var(--mid);
+}
+
+::selection {
+  background: var(--darker);
+  color: var(--lighter);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+body {
+  background: var(--lighter);
+}
+
+.container {
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.number {
+  width: 4rem;
+  padding: 0.5rem;
+  line-height: 2rem;
+  font-size: 2rem;
+  font-weight: 300;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  background-color: var(--light);
+  cursor: pointer;
+  transition: 0.15s background-color ease-in-out;
+}
+.number:focus,
+.number:hover {
+  background-color: var(--mid);
+}
+
+.submit {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+  background: var(--dark);
+  color: white;
+  border-radius: 0.25rem;
+  transition: 0.15s opacity ease-in-out;
+}
+.submit:hover {
+  opacity: 0.75;
+}
+
+.tries {
+  overflow-y: auto;
+  padding: 1rem;
+  max-height: 30rem;
+}
+
+.try {
+  font-size: 1.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background-color: var(--light);
+  margin-bottom: 0.25rem;
+  transition: 0.15s background-color ease-in-out;
+}
+.try:hover {
+  background-color: var(--mid);
+}
+
+@keyframes blink {
+  to {
+    transform: scale(0.99);
+  }
+}
+.error {
+  padding: 1rem;
+  background: #fa8072;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 1.5rem;
+  background: var(--red);
+  animation: blink 0.7s ease-in-out infinite;
+}
+
+.hidden {
+  display: none;
+}

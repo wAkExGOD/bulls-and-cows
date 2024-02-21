@@ -10,10 +10,7 @@ export const getAnswers = (hiddenNumbers, inputNumbers) => {
 
     if (hidden === input) {
       answers.bulls++
-      break
-    }
-
-    if (hiddenNumbers.some((el) => el === input)) {
+    } else if (hiddenNumbers.some((el) => el === input)) {
       answers.cows++
     }
   }

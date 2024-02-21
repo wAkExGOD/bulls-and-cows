@@ -1,3 +1,5 @@
 export { getAnswers } from './getAnswers.js'
 export { getHiddenNumbers } from './getHiddenNumbers.js'
+export { getInputNumbers } from './getInputNumbers.js'
+export { setError } from './setError.js'
 export { validateInputValue } from './validateInputValue.js'

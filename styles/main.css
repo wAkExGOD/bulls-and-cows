@@ -12,6 +12,7 @@
   --light: #dccab4;
   --lighter: #E8D8C4;
   --red: #944E63;
+  --green: #7A9D54;
 }
 
 ::-webkit-scrollbar {
@@ -154,7 +155,7 @@ h1 {
     opacity: 0.75;
   }
 }
-.error {
+.notification {
   padding: 1rem 1.5rem;
   background: #fa8072;
   border-radius: 0.5rem;
@@ -162,11 +163,16 @@ h1 {
   font-size: 1.5rem;
   background: var(--red);
   text-align: center;
-  animation: blink 0.7s ease-in-out infinite;
 
   @media (max-width: 768px) {
     padding: 0.5rem 1rem;
   }
+}
+.notification.error {
+  animation: blink 0.7s ease-in-out infinite;
+}
+.notification.success {
+  background: var(--green);
 }
 
 .hidden {

@@ -3,13 +3,13 @@ import {
   getAnswers,
   validateInputValue,
   setError,
+  setSuccess,
   getUserNumbers,
 } from "./helpers/index.js";
 
 const inputs = document.querySelectorAll(".number");
 const form = document.querySelector(".form");
 const triesContainer = document.querySelector(".tries");
-const errorContainer = document.querySelector(".error");
 const KEYCODES = {
   BACKSPACE: 8,
   LEFT: 37,
@@ -19,6 +19,8 @@ const randomNumbers = getRandomNumbers();
 let tries = 0;
 
 console.log("Загаданные числа:", randomNumbers);
+
+inputs[0]?.focus()
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -36,9 +38,12 @@ form.addEventListener("submit", (event) => {
     `;
 
     triesContainer.insertAdjacentHTML("afterbegin", tryHTML);
-    setError("", errorContainer);
+    setError("");
+    if (answers.bulls === 4) {
+      setSuccess()
+    }
   } catch (error) {
-    setError(error?.message, errorContainer);
+    setError(error?.message);
     Array.from(inputs)
       .find((input) => input.value === "")
       ?.focus();
@@ -57,7 +62,7 @@ inputs.forEach((input, i) => {
         inputs[i + 1]?.focus();
       }
     } catch (error) {
-      setError(error?.message, errorContainer);
+      setError(error?.message);
     }
   });
 

@@ -1,4 +1,6 @@
-export const setError = (error, container) => {
+const container = document.querySelector(".error");
+
+export const setError = (error) => {
   if (!container) {
     return null;
   }

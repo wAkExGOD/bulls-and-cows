@@ -1,6 +1,6 @@
-export const getInputNumbers = (inputs) => {
+export const getUserNumbers = (inputs) => {
   if (!inputs) {
-    return null
+    return null;
   }
 
   let numbers = [];
@@ -21,4 +21,4 @@ export const getInputNumbers = (inputs) => {
   }
 
   return numbers;
-}
+};

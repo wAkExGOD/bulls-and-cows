@@ -1,45 +1,41 @@
 import {
-  getHiddenNumbers,
+  getRandomNumbers,
   getAnswers,
   validateInputValue,
   setError,
-  getInputNumbers,
+  getUserNumbers,
 } from "./helpers/index.js";
 
 const inputs = document.querySelectorAll(".number");
 const form = document.querySelector(".form");
 const triesContainer = document.querySelector(".tries");
 const errorContainer = document.querySelector(".error");
-
 const KEYCODES = {
   BACKSPACE: 8,
   LEFT: 37,
   RIGHT: 39,
 };
-
-const hiddenNumbers = getHiddenNumbers();
+const randomNumbers = getRandomNumbers();
 let tries = 0;
-console.log("Загаданные числа:", hiddenNumbers);
 
-/*
-  Form submit listener
-*/
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+console.log("Загаданные числа:", randomNumbers);
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
 
   try {
-    const inputNumbers = getInputNumbers(inputs);
-    const answers = getAnswers(hiddenNumbers, inputNumbers);
-    const newTry = `
-      <div class="try">
-        Попытка ${tries}: ${inputNumbers.join("")} - Быки 🐂: ${
+    const userNumbers = getUserNumbers(inputs);
+    const answers = getAnswers(randomNumbers, userNumbers);
+    tries++;
+    const tryHTML = `
+      <li class="try">
+        Попытка ${tries}: ${userNumbers.join("")} - Быки 🐂: ${
       answers.bulls
     }, Коровы 🐄: ${answers.cows}
-      </div>
+      </li>
     `;
 
-    tries++;
-    triesContainer.insertAdjacentHTML("afterbegin", newTry);
+    triesContainer.insertAdjacentHTML("afterbegin", tryHTML);
     setError("", errorContainer);
   } catch (error) {
     setError(error?.message, errorContainer);
@@ -49,9 +45,6 @@ form.addEventListener("submit", (e) => {
   }
 });
 
-/*
-  Inputs event listeners
-*/
 inputs.forEach((input, i) => {
   input.addEventListener("input", () => {
     try {
@@ -68,8 +61,8 @@ inputs.forEach((input, i) => {
     }
   });
 
-  input.addEventListener("keydown", (e) => {
-    switch (e.keyCode) {
+  input.addEventListener("keydown", (event) => {
+    switch (event.keyCode) {
       case KEYCODES.BACKSPACE:
         if (input.value === "") {
           inputs[i - 1]?.focus();

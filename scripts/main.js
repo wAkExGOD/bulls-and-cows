@@ -67,7 +67,7 @@ const helpers = {
 
     return numbers;
   },
-  setError: (error) => {
+  setError: (error = "") => {
     if (!error) {
       return errorContainer.classList.add("hidden");
     }
@@ -75,7 +75,11 @@ const helpers = {
     errorContainer.classList.remove("hidden");
     errorContainer.textContent = error ?? "Произошла непредвиденная ошибка";
   },
-  setSuccess: () => {
+  setIsSuccess: (status = false) => {
+    if (!status) {
+      return successContainer.classList.add("hidden");
+    }
+
     successContainer.classList.remove("hidden");
     successContainer.textContent = "Поздравляю! Вы угадали все цифры!";
   },
@@ -99,7 +103,7 @@ inputs[0]?.focus();
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  const { getUserNumbers, getAnswers, clearInputs, setError, setSuccess } =
+  const { getUserNumbers, getAnswers, clearInputs, setError, setIsSuccess } =
     helpers;
 
   try {
@@ -115,11 +119,12 @@ form.addEventListener("submit", (event) => {
     `;
 
     triesContainer.insertAdjacentHTML("afterbegin", tryHTML);
-    setError("");
+    setError();
     clearInputs();
+    setIsSuccess(false);
     inputs[0]?.focus();
     if (answers.bulls === 4) {
-      setSuccess();
+      setIsSuccess(true);
     }
   } catch (error) {
     setError(error?.message);
